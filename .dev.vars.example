@@ -1,0 +1,22 @@
+# Ranse build-time secrets.
+#
+# These keys are prompted during the Deploy-to-Cloudflare flow and pushed
+# as Worker Secrets. Runtime config (APP_URL, ADMIN_EMAIL, SUPPORT_DOMAIN,
+# LLM_DEFAULT_MODEL) lives in wrangler.jsonc `vars`, NOT here.
+#
+# Leave both values BLANK. `bun run deploy` auto-generates strong random
+# values; any weak prefill (e.g. "change-me...") is regenerated.
+#
+# ────────────────────────────────────────────────────────────────────────
+# Session signing + single-use admin bootstrap.
+COOKIE_SIGNING_KEY=
+ADMIN_BOOTSTRAP_TOKEN=
+
+# ────────────────────────────────────────────────────────────────────────
+# NOT prompted during deploy:
+#   • Provider API keys (OPENAI_API_KEY, ANTHROPIC_API_KEY, etc.) — add
+#     them in-app at Settings → LLM providers, or `wrangler secret put`
+#     post-deploy if you prefer Worker-wide scope. Workers AI is the
+#     default and requires no keys.
+#   • CLOUDFLARE_AI_GATEWAY_TOKEN — only needed if you manually enable
+#     gateway authentication.
